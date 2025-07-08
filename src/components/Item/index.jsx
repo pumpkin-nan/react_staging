@@ -12,8 +12,13 @@ export default class Item extends Component {
   };
   handleCheck = (id) => {
     return (event) => {
-      console.log(event.target.checked, id);
+      this.props.updateTodo(id, event.target.checked);
     };
+  };
+  handleDelete = (id) => {
+    if (window.confirm("确认删除吗？")) {
+      this.props.deleteTodo(id);
+    }
   };
   render() {
     const { id, name, done } = this.props;
@@ -33,6 +38,7 @@ export default class Item extends Component {
           <span>{name}</span>
         </label>
         <button
+          onClick={() => this.handleDelete(id)}
           className="btn btn-danger"
           style={{ display: mouse ? "block" : "none" }}
         >

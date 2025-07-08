@@ -18,13 +18,33 @@ export default class App extends Component {
     console.log(newTodo);
     this.setState({ todoList: newTodo });
   };
+  updateTodo = (id, done) => {
+    const { todoList } = this.state;
+    const newTodos = todoList.map((todoObj) => {
+      if (todoObj.id === id) return { ...todoObj, done };
+      else return { ...todoObj };
+    });
+    this.setState({ todoList: newTodos });
+  };
+  deleteTodo = (id) => {
+    console.log(id, "app");
+    const { todoList } = this.state;
+    const newTodos = todoList.filter((todoObj) => {
+      return todoObj.id !== id;
+    });
+    this.setState({ todoList: newTodos });
+  };
   render() {
     const { todoList } = this.state;
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todoList} />
+          <List
+            todos={todoList}
+            updateTodo={this.updateTodo}
+            deleteTodo={this.deleteTodo}
+          />
           <Footer />
         </div>
       </div>
