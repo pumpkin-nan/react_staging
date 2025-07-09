@@ -1,21 +1,23 @@
 import React, { Component } from "react";
-import axios from "axios";
-
+import "./App.css";
+import List from "./components/List";
+import Search from "./components/Search";
 export default class App extends Component {
-  getStudentData = () => {
-    axios.get("http://localhost:3000/students").then(
-      (response) => {
-        console.log("成功了", response.data);
-      },
-      (error) => {
-        console.log("失败了", error);
-      }
-    );
+  state = {
+    userList: [],
+    isFirst: true,
+    isLoading: false,
+    err: "",
+  };
+
+  updateAppState = (stateObj) => {
+    this.setState(stateObj);
   };
   render() {
     return (
-      <div>
-        <button onClick={this.getStudentData}>点我获取学生数据</button>
+      <div className="container">
+        <Search updateAppState={this.updateAppState} />
+        <List {...this.state} />
       </div>
     );
   }
