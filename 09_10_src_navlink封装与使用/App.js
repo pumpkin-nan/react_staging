@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Header from "./components/Header";
@@ -17,6 +17,26 @@ export default class App extends Component {
         <div className="row">
           <div className="col-xs-2 col-xs-offset-2">
             <div className="list-group">
+              {/* <a className="list-group-item active" href="./about.html">
+                About
+              </a>
+              <a className="list-group-item" href="./home.html">
+                Home
+              </a> */}
+              {/* <NavLink
+                activeClassName="activeMenu"
+                className="list-group-item "
+                to="/about"
+              >
+                About
+              </NavLink>
+              <NavLink
+                activeClassName="activeMenu"
+                className="list-group-item "
+                to="/home"
+              >
+                Home
+              </NavLink> */}
               <MyNavLink
                 activeClassName="activeMenu"
                 className="list-group-item "
@@ -26,7 +46,7 @@ export default class App extends Component {
               <MyNavLink
                 activeClassName="activeMenu"
                 className="list-group-item "
-                to="/home/a/b"
+                to="/home"
                 children="home"
               />
             </div>
@@ -34,11 +54,8 @@ export default class App extends Component {
           <div className="col-xs-6">
             <div className="panel">
               <div className="panel-body">
-                <Switch>
-                  <Route exact path="/about" component={About} />
-                  <Route exact path="/home" component={Home} />
-                  <Redirect to="/home"></Redirect>
-                </Switch>
+                <Route path="/about" component={About} />
+                <Route path="/home" component={Home} />
               </div>
             </div>
           </div>
