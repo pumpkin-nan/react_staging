@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import qs from "qs";
+// import qs from "qs";
 
 export default class Detail extends Component {
   state = {
@@ -10,14 +10,20 @@ export default class Detail extends Component {
     ],
   };
   render() {
+    // 使用params传递参数
     // const { id, title } = this.props.match.params;
-    const { search } = this.props.location;
-    const { id, title } = qs.parse(search.slice(1));
-    console.log(id, title);
     const { DetailData } = this.state;
-    const findResult = DetailData.find((item) => {
-      return item.id === id;
-    });
+    // 使用search传递参数
+    // const { search } = this.props.location;
+    // const { id, title } = qs.parse(search.slice(1));
+
+    // 使用state传递参数
+    const { id, title } = this.props.location.state || {};
+
+    const findResult =
+      DetailData.find((item) => {
+        return item.id === id;
+      }) || {};
     return (
       <ul>
         <li>ID:{id}</li>
